@@ -1,3 +1,55 @@
-<div style="min-height: 100vh">
-  <p>Home works!</p>
+<div
+  style="min-height: 100vh; background-image: linear-gradient(to bottom right, rgba(116,133,197,0.29), rgba(76,221,36,0.32));">
+  <div style="display: flex; justify-content: center; align-items: center; padding: 1.5rem">
+    <p *ngIf="currentUser" class="welcome-text">
+      Καλώς όρισες {{ currentUser }}
+    </p>
+    <p *ngIf="!currentUser" class="welcome-text">
+      Συνδέσου για μια μονοδική εμπειρία προτιμήσεων
+    </p>
+  </div>
+  <div *ngIf="moviesLoading || booksLoading || musicLoading" style="display: flex; justify-content: center; align-items: center; padding-top: 4rem">
+    <p-progress-spinner ariaLabel="loading" strokeWidth="8" fill="transparent" [style]="{ width: '100px' }"/>
+  </div>
+  <div *ngIf="!moviesLoading && !booksLoading && !musicLoading">
+    <div style="display: flex; justify-content: left; flex-direction: column; padding: 1rem">
+      <p class="welcome-text" style="font-size: 2rem; text-align: unset">
+        Προτεινόμενες ταινίες
+      </p>
+      <div class="movie-grid">
+        <div class="movie-container" *ngFor="let movie of movies">
+          <img [src]="movie.poster" alt="movie-image-here" height="400" width="300">
+          <p style="font-weight: bold">{{ movie.title }}</p>
+          <p-rating [(ngModel)]="movie.score"/>
+          <p>{{ movie.genres }}</p>
+        </div>
+      </div>
+    </div>
+    <div style="display: flex; justify-content: left; flex-direction: column; padding: 1rem">
+      <p class="welcome-text" style="font-size: 2rem; text-align: unset">
+        Προτεινόμενες ταινίες από βιβλία
+      </p>
+      <div class="movie-grid">
+        <div class="movie-container" *ngFor="let movie of books">
+          <img [src]="movie.poster" alt="movie-image-here" height="400" width="300">
+          <p style="font-weight: bold">{{ movie.title }}</p>
+          <p-rating [(ngModel)]="movie.score"/>
+          <p>{{ movie.genres }}</p>
+        </div>
+      </div>
+    </div>
+    <div style="display: flex; justify-content: left; flex-direction: column; padding: 1rem">
+      <p class="welcome-text" style="font-size: 2rem ; text-align: unset">
+        Προτεινόμενες ταινίες με μουσική
+      </p>
+      <div class="movie-grid">
+        <div class="movie-container" *ngFor="let movie of music">
+          <img [src]="movie.poster" alt="movie-image-here" height="400" width="300">
+          <p style="font-weight: bold">{{ movie.title }}</p>
+          <p-rating [(ngModel)]="movie.score"/>
+          <p>{{ movie.genres }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

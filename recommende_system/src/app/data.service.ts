@@ -88,8 +88,20 @@ export class DataService {
       }));
   }
 
-  sendContactMessage(data: any){
-    return this.http.post<any>(this.remoteDataService.serviceURL + 'sendContactMessage', data, httpOptions).pipe(
+  getRecommendedMovie(data: any){
+    return this.http.post<any>(this.remoteDataService.serviceURL + 'recommendations/movies', data, httpOptions).pipe(
+      map(
+        (response: any) => {
+          return response;
+        }
+      ),
+      catchError((error: any) => {
+        this.handleError(error);
+        return throwError(error); // Rethrow the error to be handled by the caller
+      }));
+  }
+  getRecommendedBook(data: any){
+    return this.http.post<any>(this.remoteDataService.serviceURL + 'recommendations/books', data, httpOptions).pipe(
       map(
         (response: any) => {
           return response;
@@ -101,241 +113,8 @@ export class DataService {
       }));
   }
 
-  //For admin-------------
-  addMovie(data: any){
-    return this.http.post<any>(this.remoteDataService.serviceURL + 'addMovie', data, httpOptions).pipe(
-      map(
-        (response: any) => {
-          return response;
-        }
-      ),
-      catchError((error: any) => {
-        this.handleError(error);
-        return throwError(error); // Rethrow the error to be handled by the caller
-      }));
-  }
-
-  //For admin------------
-  updateMovie(data: any){
-    return this.http.post<any>(this.remoteDataService.serviceURL + 'updateMovie', data, httpOptions).pipe(
-      map(
-        (response: any) => {
-          return response;
-        }
-      ),
-      catchError((error: any) => {
-        this.handleError(error);
-        return throwError(error); // Rethrow the error to be handled by the caller
-      }));
-  }
-
-  //For admin-------------
-  deleteMovie(data: any){
-    return this.http.post<any>(this.remoteDataService.serviceURL + 'deleteMovie', data, httpOptions).pipe(
-      map(
-        (response: any) => {
-          return response;
-        }
-      ),
-      catchError((error: any) => {
-        this.handleError(error);
-        return throwError(error); // Rethrow the error to be handled by the caller
-      }));
-  }
-
-  getRoom(data: any){
-    return this.http.post<any>(this.remoteDataService.serviceURL + 'getRoom', data, httpOptions).pipe(
-      map(
-        (response: any) => {
-          return response;
-        }
-      ),
-      catchError((error: any) => {
-        this.handleError(error);
-        return throwError(error); // Rethrow the error to be handled by the caller
-      }));
-  }
-
-  //For Admin ------------
-  addRoom(data: any){
-    return this.http.post<any>(this.remoteDataService.serviceURL + 'addRoom', data, httpOptions).pipe(
-      map(
-        (response: any) => {
-          return response;
-        }
-      ),
-      catchError((error: any) => {
-        this.handleError(error);
-        return throwError(error); // Rethrow the error to be handled by the caller
-      }));
-  }
-
-  //For Admin ------------
-  updateRoom(data: any){
-    return this.http.post<any>(this.remoteDataService.serviceURL + 'updateRoom', data, httpOptions).pipe(
-      map(
-        (response: any) => {
-          return response;
-        }
-      ),
-      catchError((error: any) => {
-        this.handleError(error);
-        return throwError(error); // Rethrow the error to be handled by the caller
-      }));
-  }
-
-  //For Admin ------------
-  deleteRoom(data: any){
-    return this.http.post<any>(this.remoteDataService.serviceURL + 'deleteRoom', data, httpOptions).pipe(
-      map(
-        (response: any) => {
-          return response;
-        }
-      ),
-      catchError((error: any) => {
-        this.handleError(error);
-        return throwError(error); // Rethrow the error to be handled by the caller
-      }));
-  }
-
-  getSeat(data: any){
-    return this.http.post<any>(this.remoteDataService.serviceURL + 'getSeat', data, httpOptions).pipe(
-      map(
-        (response: any) => {
-          return response;
-        }
-      ),
-      catchError((error: any) => {
-        this.handleError(error);
-        return throwError(error); // Rethrow the error to be handled by the caller
-      }));
-  }
-
-  //For Admin ------------
-  addSeat(data: any){
-    return this.http.post<any>(this.remoteDataService.serviceURL + 'addSeat', data, httpOptions).pipe(
-      map(
-        (response: any) => {
-          return response;
-        }
-      ),
-      catchError((error: any) => {
-        this.handleError(error);
-        return throwError(error); // Rethrow the error to be handled by the caller
-      }));
-  }
-
-  //For Admin ------------
-  addAllSeats(data: any){
-    return this.http.post<any>(this.remoteDataService.serviceURL + 'addAllSeats', data, httpOptions).pipe(
-      map(
-        (response: any) => {
-          return response;
-        }
-      ),
-      catchError((error: any) => {
-        this.handleError(error);
-        return throwError(error); // Rethrow the error to be handled by the caller
-      }));
-  }
-
-  updateSeat(data: any){
-    return this.http.post<any>(this.remoteDataService.serviceURL + 'updateSeat', data, httpOptions).pipe(
-      map(
-        (response: any) => {
-          return response;
-        }
-      ),
-      catchError((error: any) => {
-        this.handleError(error);
-        return throwError(error); // Rethrow the error to be handled by the caller
-      }));
-  }
-
-  updateAllSeat(data: any){
-    return this.http.post<any>(this.remoteDataService.serviceURL + 'updateAllSeat', data, httpOptions).pipe(
-      map(
-        (response: any) => {
-          return response;
-        }
-      ),
-      catchError((error: any) => {
-        this.handleError(error);
-        return throwError(error); // Rethrow the error to be handled by the caller
-      }));
-  }
-
-  sendTicketToUser(data: any){
-    return this.http.post<any>(this.remoteDataService.serviceURL + 'sendTicketToUser', data, httpOptions).pipe(
-      map(
-        (response: any) => {
-          return response;
-        }
-      ),
-      catchError((error: any) => {
-        this.handleError(error);
-        return throwError(error); // Rethrow the error to be handled by the caller
-      }));
-  }
-
-  //For Admin -----------
-  deleteSeat(data: any){
-    return this.http.post<any>(this.remoteDataService.serviceURL + 'deleteSeat', data, httpOptions).pipe(
-      map(
-        (response: any) => {
-          return response;
-        }
-      ),
-      catchError((error: any) => {
-        this.handleError(error);
-        return throwError(error); // Rethrow the error to be handled by the caller
-      }));
-  }
-
-  getView(data: any){
-    return this.http.post<any>(this.remoteDataService.serviceURL + 'getView', data, httpOptions).pipe(
-      map(
-        (response: any) => {
-          return response;
-        }
-      ),
-      catchError((error: any) => {
-        this.handleError(error);
-        return throwError(error); // Rethrow the error to be handled by the caller
-      }));
-  }
-
-  // For Admin---
-  addView(data: any){
-    return this.http.post<any>(this.remoteDataService.serviceURL + 'addView', data, httpOptions).pipe(
-      map(
-        (response: any) => {
-          return response;
-        }
-      ),
-      catchError((error: any) => {
-        this.handleError(error);
-        return throwError(error); // Rethrow the error to be handled by the caller
-      }));
-  }
-
-  // For Admin---
-  updateView(data: any){
-    return this.http.post<any>(this.remoteDataService.serviceURL + 'updateView', data, httpOptions).pipe(
-      map(
-        (response: any) => {
-          return response;
-        }
-      ),
-      catchError((error: any) => {
-        this.handleError(error);
-        return throwError(error); // Rethrow the error to be handled by the caller
-      }));
-  }
-
-  // For Admin---
-  deleteView(data: any){
-    return this.http.post<any>(this.remoteDataService.serviceURL + 'deleteView', data, httpOptions).pipe(
+  getRecommendedMusic(data: any){
+    return this.http.post<any>(this.remoteDataService.serviceURL + 'recommendations/music', data, httpOptions).pipe(
       map(
         (response: any) => {
           return response;

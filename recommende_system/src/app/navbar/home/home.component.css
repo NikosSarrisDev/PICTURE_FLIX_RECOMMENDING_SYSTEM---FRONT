@@ -1,0 +1,23 @@
+.welcome-text {
+  text-align: center;
+  font-family: 'Rubik', sans-serif;
+  font-size: 3rem;
+  font-weight: bold;
+  color: #000000;
+}
+
+.movie-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.movie-grid {
+  display: grid;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 10px;
+}
+
+::ng-deep p-prorg {}
