@@ -1,0 +1,21 @@
+.filter-div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0.5rem 0;
+  border: 0.1rem solid #2b38cc;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+}
+
+.movie-grid {
+  margin: 1rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 0.5rem;
+}
+
+.full-width-paginator {
+  width: 100%;
+}

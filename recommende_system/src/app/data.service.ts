@@ -88,6 +88,45 @@ export class DataService {
       }));
   }
 
+  allMovies(data: any) {
+    return this.http.post<any>(this.remoteDataService.serviceURL + 'allMovies', data, httpOptions).pipe(
+      map(
+        (response: any) => {
+          return response;
+        }
+      ),
+      catchError((error: any) => {
+        this.handleError(error);
+        return throwError(error); // Rethrow the error to be handled by the caller
+      }));
+  }
+
+  bookMovies(data: any) {
+    return this.http.post<any>(this.remoteDataService.serviceURL + 'bookMovies', data, httpOptions).pipe(
+      map(
+        (response: any) => {
+          return response;
+        }
+      ),
+      catchError((error: any) => {
+        this.handleError(error);
+        return throwError(error); // Rethrow the error to be handled by the caller
+      }));
+  }
+
+  musicMovies(data: any) {
+    return this.http.post<any>(this.remoteDataService.serviceURL + 'musicMovies', data, httpOptions).pipe(
+      map(
+        (response: any) => {
+          return response;
+        }
+      ),
+      catchError((error: any) => {
+        this.handleError(error);
+        return throwError(error); // Rethrow the error to be handled by the caller
+      }));
+  }
+
   getRecommendedMovie(data: any){
     return this.http.post<any>(this.remoteDataService.serviceURL + 'recommendations/movies', data, httpOptions).pipe(
       map(
