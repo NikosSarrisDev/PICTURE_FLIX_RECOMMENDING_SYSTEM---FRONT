@@ -3,15 +3,20 @@
     <label><i class="pi pi-search" style="font-size: 1.5rem"></i></label>
     <input type="text" pInputText [(ngModel)]="searchString" placeholder="Search everything"/>
   </div>
-  <div style="margin: 1rem; border-radius: 1rem; border: 1px solid black; padding: 0.5rem">
-    <button mat-button="elevated"
-            [matTooltip]="currentUser ? 'Αποσύνδεση' : 'Σύνδεση'"
-            aria-label="Button that displays a tooltip when focused or hovered over" (click)="navigateToLoginOrLogout()">
-      <div style="display: flex; flex-direction: column">
-        <i class="pi pi-user" style="font-size: 1.5rem"></i>
-        {{currentUser}}
-      </div>
-    </button>
+  <div style="display: flex; align-items: center; justify-content: space-between; gap: 3rem">
+    <div [matBadge]="quantity">
+      <a routerLink="/shoppingCart"><i class="pi pi-shopping-cart" style="font-size: 2rem"></i></a>
+    </div>
+    <div style="margin: 1rem; border-radius: 1rem; border: 1px solid black; padding: 0.5rem">
+      <button mat-button="elevated"
+              [matTooltip]="currentUser ? 'Αποσύνδεση' : 'Σύνδεση'"
+              aria-label="Button that displays a tooltip when focused or hovered over" (click)="navigateToLoginOrLogout()">
+        <div style="display: flex; flex-direction: column">
+          <i class="pi pi-user" style="font-size: 1.5rem"></i>
+          {{currentUser}}
+        </div>
+      </button>
+    </div>
   </div>
 </div>
 <app-navbar></app-navbar>

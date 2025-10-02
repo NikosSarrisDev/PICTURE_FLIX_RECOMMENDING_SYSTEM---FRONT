@@ -1,0 +1,38 @@
+.basket-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: rgba(193, 187, 187, 0.8);
+}
+
+.basket-container > div {
+  font-size: 3rem;
+  padding: 3rem;
+  color: rgb(0, 0, 0);
+}
+
+.buy-button-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.buy-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+  background: gold;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.no-content-container {
+  padding: 12rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+  color: red;
+}

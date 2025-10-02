@@ -8,6 +8,8 @@ import {FullComponent} from './full/full.component';
 import {RegisterComponent} from './register/register.component';
 import {LoginComponent} from './login/login.component';
 import {PasswordRecoveryComponent} from './password-recovery/password-recovery.component';
+import {MovieOverviewComponent} from './full/movie-overview/movie-overview.component';
+import {ShoppingCartComponent} from './full/shopping-cart/shopping-cart.component';
 
 export const routes: Routes = [
   {
@@ -47,5 +49,18 @@ export const routes: Routes = [
   {
     path: 'rememberPassword',
     component: PasswordRecoveryComponent
+  },
+  {
+    path: 'movieOverview',
+    component: MovieOverviewComponent
+  },
+  {
+    path: 'shoppingCart',
+    component: ShoppingCartComponent
+  },
+  {
+    path: '**',
+    redirectTo: '',
+    pathMatch: 'full'
   }
 ];

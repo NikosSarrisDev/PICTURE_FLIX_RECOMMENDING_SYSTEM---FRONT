@@ -1,0 +1,52 @@
+.content-of-movie {
+  margin: 4rem;
+  display: flex;
+  border-top: 2px dashed #000000;
+  border-bottom: 2px dashed #000000;
+  padding: 2rem;
+}
+
+.info-movie {
+  display: flex;
+  flex-direction: column;
+  padding: 4rem;
+}
+
+.info-movie div {
+  font-size: 1.2rem;
+  padding: 0.5rem;
+}
+
+.buy-button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.buy-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+  background: gold;
+  border-radius: 0.5rem;
+  margin-top: 3rem;
+  cursor: pointer;
+}
+
+.recommendation-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.price-tag {
+  margin: 1rem 0;
+  border: 1px solid #000000;
+}
+
+button {
+  border: none;
+  cursor: pointer;
+  margin: 0.3rem;
+  background: black;
+}

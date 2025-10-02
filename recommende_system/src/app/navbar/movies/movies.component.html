@@ -1,3 +1,93 @@
-<div style="min-height: 100vh; background-image: linear-gradient(to bottom right, rgba(221,58,58,0.29), rgba(58,207,167,0.32));">
-  <p>Movies works!</p>
+<div
+  style="min-height: 100vh; background-image: linear-gradient(to bottom right, rgba(255,0,0,0.29), rgba(255,255,0,0.32));">
+  <div class="row" style="width: 100%">
+    <div class="col-md-3">
+      <div style="margin: 2rem 1rem 0 1rem;">
+        <form [formGroup]="filtersForm" (ngSubmit)="applyFilters()">
+          <div style="display: flex; flex-direction: column; justify-content: center; margin: 2rem 0">
+            <div (click)="resetFilters()" style="margin-bottom: 0.5rem;color: #2b38cc;cursor: pointer"><i
+              class="pi pi-refresh" style="color: #2b38cc"></i> Καθαρισμός φίλτρων
+            </div>
+            <label for="title">Τίτλος</label>
+            <input pInputText id="title" formControlName="title" (keyup)="applyFilters()">
+          </div>
+          <div class="filter-div">
+            <div>ΔΡΑΣΗ</div>
+            <p-checkbox binary="true" formControlName="action" (onChange)="applyFilters()"></p-checkbox>
+          </div>
+          <div class="filter-div">
+            <div>ΠΕΡΙΠΕΤΕΙΑ</div>
+            <p-checkbox binary="true" formControlName="adventure" (onChange)="applyFilters()"></p-checkbox>
+          </div>
+          <div class="filter-div">
+            <div>ΠΑΙΔΙΚΗ</div>
+            <p-checkbox binary="true" formControlName="children" (onChange)="applyFilters()"></p-checkbox>
+          </div>
+          <div class="filter-div">
+            <div>ΚΩΜΩΔΙΑ</div>
+            <p-checkbox binary="true" formControlName="comedy" (onChange)="applyFilters()"></p-checkbox>
+          </div>
+          <div class="filter-div">
+            <div>ΕΓΓΛΗΜΑ</div>
+            <p-checkbox binary="true" formControlName="crime" (onChange)="applyFilters()"></p-checkbox>
+          </div>
+          <div class="filter-div">
+            <div>ΔΡΑΜΑ</div>
+            <p-checkbox binary="true" formControlName="drama" (onChange)="applyFilters()"></p-checkbox>
+          </div>
+          <div class="filter-div">
+            <div>ΦΑΝΤΑΣΙΑ</div>
+            <p-checkbox binary="true" formControlName="fantasy" (onChange)="applyFilters()"></p-checkbox>
+          </div>
+          <div class="filter-div">
+            <div>ΤΡΟΜΟΥ</div>
+            <p-checkbox binary="true" formControlName="horror" (onChange)="applyFilters()"></p-checkbox>
+          </div>
+          <div class="filter-div">
+            <div>ΜΙΟΥΖΙΚΑΛ</div>
+            <p-checkbox binary="true" formControlName="musical" (onChange)="applyFilters()"></p-checkbox>
+          </div>
+          <div class="filter-div">
+            <div>ΜΥΣΤΗΡΙΟΥ</div>
+            <p-checkbox binary="true" formControlName="mystery" (onChange)="applyFilters()"></p-checkbox>
+          </div>
+          <div class="filter-div">
+            <div>ΡΟΜΑΝΤΙΚΗ</div>
+            <p-checkbox binary="true" formControlName="romance" (onChange)="applyFilters()"></p-checkbox>
+          </div>
+          <div class="filter-div">
+            <div>ΕΠΙΣΤΗΜΟΝΙΚΗ ΦΑΝΤΑΣΙΑ</div>
+            <p-checkbox binary="true" formControlName="scifi" (onChange)="applyFilters()"></p-checkbox>
+          </div>
+          <div class="filter-div">
+            <div>ΘΡΙΛΕΡ</div>
+            <p-checkbox binary="true" formControlName="thriller" (onChange)="applyFilters()"></p-checkbox>
+          </div>
+          <div class="filter-div">
+            <div>ΠΟΛΕΜΙΚΗ</div>
+            <p-checkbox binary="true" formControlName="war" (onChange)="applyFilters()"></p-checkbox>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="col-md-9">
+      <div *ngIf="loading" style="display: flex; justify-content: center; align-items: center; height: 100%">
+        <p-progress-spinner ariaLabel="loading" strokeWidth="8" fill="transparent" [style]="{ width: '100px' }"/>
+      </div>
+      <div *ngIf="movies.length == 0 && !loading" style="display: flex; justify-content: center; align-items: center; height: 100%">
+        <div style="font-weight: bold; font-size: 2rem">Δεν υπάρχουν ταινίες</div>
+      </div>
+      <div *ngIf="movies.length > 0 && !loading" class="movie-grid">
+        <div class="movie-container" *ngFor="let movie of paginatedMovies">
+          <img (click)="moveToMovieOverview(movie.title, movie.poster, movie.genres)" style="border-radius: 0.5rem; cursor: pointer" [src]="movie.poster" alt="movie-image-here" height="300" width="200">
+          <p style="font-weight: bold">{{ movie.title }}</p>
+        </div>
+      </div>
+      <div style="display: flex; justify-content: flex-end">
+        <p-paginator (onPageChange)="onPageChange($event)" [first]="first" [rows]="rows"
+                     [totalRecords]="movies.length"/>
+      </div>
+    </div>
+  </div>
 </div>
+

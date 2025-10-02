@@ -75,19 +75,6 @@ export class DataService {
 
   }
 
-  getMovie(data: any){
-    return this.http.post<any>(this.remoteDataService.serviceURL + 'getMovie', data, httpOptions).pipe(
-      map(
-        (response: any) => {
-          return response;
-        }
-      ),
-      catchError((error: any) => {
-        this.handleError(error);
-        return throwError(error); // Rethrow the error to be handled by the caller
-      }));
-  }
-
   allMovies(data: any) {
     return this.http.post<any>(this.remoteDataService.serviceURL + 'allMovies', data, httpOptions).pipe(
       map(
@@ -154,6 +141,32 @@ export class DataService {
 
   getRecommendedMusic(data: any){
     return this.http.post<any>(this.remoteDataService.serviceURL + 'recommendations/music', data, httpOptions).pipe(
+      map(
+        (response: any) => {
+          return response;
+        }
+      ),
+      catchError((error: any) => {
+        this.handleError(error);
+        return throwError(error); // Rethrow the error to be handled by the caller
+      }));
+  }
+
+  storeOrder(data: any){
+    return this.http.post<any>(this.remoteDataService.serviceURL + 'storeOrder', data, httpOptions).pipe(
+      map(
+        (response: any) => {
+          return response;
+        }
+      ),
+      catchError((error: any) => {
+        this.handleError(error);
+        return throwError(error); // Rethrow the error to be handled by the caller
+      }));
+  }
+
+  getOrder(data: any){
+    return this.http.post<any>(this.remoteDataService.serviceURL + 'getOrder', data, httpOptions).pipe(
       map(
         (response: any) => {
           return response;

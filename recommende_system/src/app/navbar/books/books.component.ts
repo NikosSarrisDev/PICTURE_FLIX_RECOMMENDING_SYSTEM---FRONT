@@ -140,6 +140,10 @@ export class BooksComponent implements OnInit{
     this.paginatedMovies = this.movies.slice(start, end);
   }
 
+  moveToMovieOverview(title: string, thumbnail: string, type: string) {
+    this.router.navigate(["/movieOverview"], { queryParams: { title: title, thumbnail: thumbnail, type: type, price: 10 }});
+  }
+
   resetFilters() {
     this.filtersForm.reset();
     this.getMovies({});

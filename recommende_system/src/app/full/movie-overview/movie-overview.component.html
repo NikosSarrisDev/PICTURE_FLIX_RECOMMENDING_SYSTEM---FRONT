@@ -1,0 +1,32 @@
+<div style="min-height: 100vh">
+  <a routerLink="/" class="back-to-home"><i class="pi pi-arrow-left" style="padding-right: 1rem; font-size: inherit"></i>Επιστροφή στην κεντρική σελίδα</a>
+  <div class="content-of-movie">
+    <div>
+      <img [src]="thumbnail()" alt="movie-poster" height="400" width="300">
+    </div>
+    <div class="info-movie">
+      <div><b>Τίτλος:</b> {{title()}}</div>
+      <div><b>Κατηγορία:</b> {{type()}}</div>
+      <div><b>Διαθεσιμότητα:</b> Αμεσα διαθέσιμο για online παραγγελία</div>
+      <div style="border-radius: 0.5rem; border: 2px solid black">
+        <div style="color: red">Σταθερά Χαμηλές Τιμές!</div>
+        <div>Εδώ θα βρείτε κάθε μέρα τις πιο ανταγωνιστικές τιμές</div>
+      </div>
+      <div class="price-tag"><b>Τιμή: {{price()}}<i class="pi pi-euro"></i></b></div>
+      <div style="display: flex; align-items: center">
+        <div style="display: flex; flex-direction: column">
+          <button (click)="addQuantity()" [disabled]="quantity > 10"><i class="pi pi-caret-up"></i></button>
+          <button (click)="lowerQuantity()" [disabled]="quantity <= 0"><i class="pi pi-caret-down"></i></button>
+        </div>
+        <b>Ποσότητα: {{quantity}}</b>
+      </div>
+      <div class="buy-button-container">
+        <div class="buy-button" (click)="addToShoppingCart()"><i class="pi pi-shopping-cart" style="font-size: 2rem; padding-right: 0.3rem"></i>Προσθήκη στο καλάθι</div>
+      </div>
+    </div>
+  </div>
+  <div class="recommendation-item">
+    <div style="font-size: 2.5rem; text-align: center"><b>Προτεινόμενες Ταινίες</b></div>
+    <div style="font-size: 1.5rem; padding: 4rem 0 2rem 4rem">Μπορεί να σας αρέσουν επίσης</div>
+  </div>
+</div>

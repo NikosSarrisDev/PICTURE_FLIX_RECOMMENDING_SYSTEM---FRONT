@@ -29,3 +29,13 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;}
   --p-paginator-background: none;
   --p-paginator-nav-button-selected-background: #000000;
 }
+
+.back-to-home {
+  position: absolute;
+  top: 1.5rem;
+  left: 1.5rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: black;
+  text-decoration: none;
+}
