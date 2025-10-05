@@ -1,4 +1,7 @@
-<div style="min-height: 100vh; padding: 5rem">
+<div style="min-height: 100vh; padding: 5rem;">
+  <div class="send-order" *ngIf="orderSend">
+    <p-progress-spinner ariaLabel="loading" strokeWidth="8" fill="transparent" [style]="{ width: '100px' }"/>
+  </div>
   <a routerLink="/" class="back-to-home"><i class="pi pi-arrow-left" style="padding-right: 1rem; font-size: inherit"></i>Επιστροφή στην κεντρική σελίδα</a>
   <div class="basket-container">
     <div><i class="pi pi-shopping-cart" style="padding-right: 1rem; font-size: inherit"></i>Καλάθι αγορών</div>
@@ -19,24 +22,26 @@
       </thead>
       <tbody>
       <tr *ngFor="let item of shopping_cart_items">
-        <th scope="row">{{item.thumbnail}}</th>
-        <td>{{item.title}}</td>
-        <td>{{item.type}}</td>
-        <td>{{item.quantity}}</td>
-        <td>{{item.price}}<i class="pi pi-euro"></i></td>
+        <th scope="row"><img [src]="item.thumbnail" alt="movie-poster" height="150" width="100"></th>
+        <td style="vertical-align: middle"><div >{{item.title}}</div></td>
+        <td style="vertical-align: middle"><div>{{item.type}}</div></td>
+        <td style="vertical-align: middle"><div>{{item.quantity}}</div></td>
+        <td style="vertical-align: middle"><div>{{item.price}} <i class="pi pi-euro"></i></div></td>
         <td></td>
       </tr>
       <tr>
         <td></td>
         <td></td>
         <td></td>
-        <td></td>
-        <td></td>
+        <td>Σύνολο</td>
+        <td>{{total_cost}} <i class="pi pi-euro"></i></td>
       </tr>
       </tbody>
     </table>
   </div>
   <div class="buy-button-container">
+    <p-toast />
+    <div class="trash-button" (click)="removeAllFromCart()" *ngIf="shopping_cart_items.length != 0"><i class="pi pi-trash" style="font-size: 2rem; padding-right: 0.3rem"></i>Αφαίρεση όλων</div>
     <div class="buy-button" (click)="storeOrder()" *ngIf="shopping_cart_items.length != 0"><i class="pi pi-shopping-cart" style="font-size: 2rem; padding-right: 0.3rem"></i>Ολοκλήρωση αγοράς</div>
   </div>
 </div>

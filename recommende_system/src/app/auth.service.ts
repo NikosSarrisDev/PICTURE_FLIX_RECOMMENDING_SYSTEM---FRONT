@@ -5,6 +5,7 @@ import {map} from 'rxjs/operators';
 import {CookieService} from "./cookie.service";
 import {Router} from "@angular/router";
 import {RemoteDataService} from "./remotedata.service";
+import {ShoppingCartSharingService} from './full/shopping-cart-sharing.service';
 
 
 const httpOptions = {
@@ -20,7 +21,7 @@ export class AuthenticationService {
   public menuOtionsInds:any={};
 
 
-  constructor(private http: HttpClient, private cookieService: CookieService, private remoteDataService: RemoteDataService , private router: Router) {}
+  constructor(private http: HttpClient, private cookieService: CookieService, private remoteDataService: RemoteDataService , private router: Router, private shoppingSharingService: ShoppingCartSharingService) {}
   public currentUser(): any {
     if (!this.user) {
       this.user = JSON.parse(<string>this.cookieService.getCookie(this.remoteDataService.platform+'_user'));
@@ -48,5 +49,8 @@ export class AuthenticationService {
   logout() {
     this.cookieService.deleteCookie(this.remoteDataService.platform+'_user');
     this.user = null;
+
+    //Όταν ένας χρήστης απασυνδέεται τότε διαγράφονται όλα τα προιόντα από το καλάθι του
+    this.shoppingSharingService.removeEverythingFromShoppingCart()
   }
 }

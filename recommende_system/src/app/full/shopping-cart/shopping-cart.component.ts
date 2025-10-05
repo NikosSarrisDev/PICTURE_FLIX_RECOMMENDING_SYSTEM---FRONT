@@ -4,6 +4,9 @@ import {NgForOf, NgIf} from '@angular/common';
 import {Router, RouterLink} from '@angular/router';
 import {DataService} from '../../data.service';
 import {AuthenticationService} from '../../auth.service';
+import {Toast, ToastModule} from 'primeng/toast';
+import { MessageService } from 'primeng/api';
+import {ProgressSpinner} from 'primeng/progressspinner';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -11,10 +14,13 @@ import {AuthenticationService} from '../../auth.service';
   imports: [
     NgForOf,
     NgIf,
-    RouterLink
+    RouterLink,
+    Toast,
+    ProgressSpinner
   ],
   templateUrl: './shopping-cart.component.html',
-  styleUrl: './shopping-cart.component.css'
+  styleUrl: './shopping-cart.component.css',
+  providers: [MessageService]
 })
 export class ShoppingCartComponent implements OnInit {
 
@@ -25,13 +31,15 @@ export class ShoppingCartComponent implements OnInit {
     quantity: number
     price: number
   }[] = [];
-  total_cost: any;
+  total_cost!: number;
   currentUser!: string;
+  orderSend: boolean = false;
 
   shoppingCartShared = inject(ShoppingCartSharingService);
   dataService = inject(DataService);
   auth = inject(AuthenticationService);
   router = inject(Router);
+  messageService = inject(MessageService)
 
   ngOnInit() {
     this.currentUser = this.auth.currentUser()?.username
@@ -45,9 +53,23 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   storeOrder() {
-    this.dataService.storeOrder({ username: this.currentUser, orderDetails: this.shopping_cart_items }).subscribe(response => {
+    this.orderSend = false;
+    this.dataService.storeOrder({ username: this.currentUser ?? "guest", orderDetails: this.shopping_cart_items }).subscribe(response => {
+      console.log(response);
+      if (response && response.status === "error") {
+        this.messageService.add({ severity: response.status, summary: 'Επιτυχία', detail: 'Η αγορά ολοκληρώθηκε!' });
+      }
+
+      //Μετά από επιτυμένη αγορά αδιάζουμε το καλάθι
+      this.removeAllFromCart();
+      this.orderSend = true;
       this.router.navigate([""]);
     })
+  }
+
+  removeAllFromCart() {
+    this.shopping_cart_items = [];
+    this.shoppingCartShared.removeEverythingFromShoppingCart();
   }
 
 }

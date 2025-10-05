@@ -16,11 +16,12 @@
       <div style="display: flex; align-items: center">
         <div style="display: flex; flex-direction: column">
           <button (click)="addQuantity()" [disabled]="quantity > 10"><i class="pi pi-caret-up"></i></button>
-          <button (click)="lowerQuantity()" [disabled]="quantity <= 0"><i class="pi pi-caret-down"></i></button>
+          <button (click)="lowerQuantity()" [disabled]="quantity <= 1"><i class="pi pi-caret-down"></i></button>
         </div>
         <b>Ποσότητα: {{quantity}}</b>
       </div>
       <div class="buy-button-container">
+        <p-toast />
         <div class="buy-button" (click)="addToShoppingCart()"><i class="pi pi-shopping-cart" style="font-size: 2rem; padding-right: 0.3rem"></i>Προσθήκη στο καλάθι</div>
       </div>
     </div>
