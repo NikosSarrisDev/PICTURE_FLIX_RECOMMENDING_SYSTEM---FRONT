@@ -45,3 +45,13 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;}
   justify-content: center;
   align-items: center;
 }
+
+.poster-div {
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: tranform 0.2s ease-in-out;
+}
+
+.poster-div:hover {
+  transform: scale(1.05);
+}

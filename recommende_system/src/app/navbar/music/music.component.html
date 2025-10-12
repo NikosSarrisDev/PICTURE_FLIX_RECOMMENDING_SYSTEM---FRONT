@@ -79,7 +79,7 @@
       </div>
       <div *ngIf="movies.length > 0 && !loading" class="movie-grid">
         <div class="movie-container" *ngFor="let movie of paginatedMovies" style="cursor: pointer">
-          <img (click)="moveToMovieOverview(movie.title, movie.poster, movie.genres)" style="border-radius: 0.5rem; cursor: pointer" [src]="movie.poster" alt="movie-image-here" height="300" width="200">
+          <img (click)="moveToMovieOverview(movie.title, movie.poster, movie.genres)" class="poster-div" [src]="movie.poster" alt="movie-image-here" height="300" width="200">
           <p style="font-weight: bold">{{ movie.title }}</p>
         </div>
       </div>

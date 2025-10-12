@@ -1,39 +1,40 @@
-import {computed, Injectable, Signal, signal} from '@angular/core';
+import {computed, effect, Injectable, Signal, signal, untracked, WritableSignal} from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ShoppingCartSharingService {
 
-  title = signal("");
-  type = signal("");
-  thumbnail = signal("");
-  quantity = signal(0);
-  price = signal(0);
-  initial_shopping_cart_items = []
-  removeAll = signal(false);
-
-  constructor() { }
+  title = "";
+  type = "";
+  thumbnail = "";
+  quantity = 0;
+  price = 0;
+  initial_shopping_cart_items: WritableSignal<any> = signal([]);
 
   //Κάθε φορά που βάζω καινούργιες τιμές στα από πάνω θα δημιουργήται ένα καινούργιο object και θα γίνεται
   //append σε αυτό το ήδη υπάρχον πίνακα ώστε μετά να μπεί στη βάση
   shopping_cart_items: any = computed(() => {
-    if (!this.title() || !this.type() || !this.thumbnail() || !this.quantity() || !this.price()) {
-      return [...this.initial_shopping_cart_items];
-    }
-    if (this.removeAll()) {
-      //todo να γίνει το καίνιασμα
-      this.removeAll();
-    }
-    return [...this.initial_shopping_cart_items, { title: this.title(), type: this.type(), thumbnail: this.thumbnail(), quantity: this.quantity(), price: this.price() }];
+    return this.initial_shopping_cart_items();
   })
+
+  addToCart(title: string, type: string, thumbnail: string, quantity: number, price: number) {
+    this.initial_shopping_cart_items.update(value => [
+      ...value,
+      { title : title, type: type, thumbnail: thumbnail, quantity: quantity, price: price }
+    ]);
+  }
 
   //Συνάρτηση για αφαίρεση όλων των στοιχείων από το καλάθι
   //Χρησιμοποιείται απίσης από τη υπηρεσία αυθεντικοποίησης
   //στο logout για λόγους ευκολίας στην διαχείρηση προιόντων
   //ανάμεσα σε διαφορετικούς χρήστες
   removeEverythingFromShoppingCart() {
-    this.removeAll.set(true);
+    this.initial_shopping_cart_items.set([]);
+  }
+
+  removeOne(index: number) {
+    this.initial_shopping_cart_items().splice(index, 1);
   }
 
 }

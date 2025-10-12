@@ -54,3 +54,13 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+.delete-button {
+  vertical-align: middle;
+  transition: background-color;
+  cursor: pointer;
+}
+
+.delete-button:hover {
+  background-color: #918d8d;
+}

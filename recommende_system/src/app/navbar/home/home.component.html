@@ -5,7 +5,7 @@
       Καλώς όρισες {{ currentUser }}
     </p>
     <p *ngIf="!currentUser" class="welcome-text">
-      Συνδέσου για μια μονοδική εμπειρία προτιμήσεων
+      Συνδέσου για μια μοναδική εμπειρία προτιμήσεων
     </p>
   </div>
   <div *ngIf="moviesLoading || booksLoading || musicLoading" style="display: flex; justify-content: center; align-items: center; padding-top: 4rem">
@@ -18,7 +18,7 @@
       </p>
       <div class="movie-grid">
         <div class="movie-container" *ngFor="let movie of movies">
-          <img [src]="movie.poster" alt="movie-image-here" height="400" width="300">
+          <img class="poster-div" (click)="moveToMovieOverview(movie.title, movie.poster, movie.genres)" [src]="movie.poster" alt="movie-image-here" height="400" width="300">
           <p style="font-weight: bold">{{ movie.title }}</p>
           <p-rating [(ngModel)]="movie.score"/>
           <p>{{ movie.genres }}</p>
@@ -31,7 +31,7 @@
       </p>
       <div class="movie-grid">
         <div class="movie-container" *ngFor="let movie of books">
-          <img [src]="movie.poster" alt="movie-image-here" height="400" width="300">
+          <img class="poster-div" (click)="moveToMovieOverview(movie.title, movie.poster, movie.genres)" [src]="movie.poster" alt="movie-image-here" height="400" width="300">
           <p style="font-weight: bold">{{ movie.title }}</p>
           <p-rating [(ngModel)]="movie.score"/>
           <p>{{ movie.genres }}</p>
@@ -44,7 +44,7 @@
       </p>
       <div class="movie-grid">
         <div class="movie-container" *ngFor="let movie of music">
-          <img [src]="movie.poster" alt="movie-image-here" height="400" width="300">
+          <img class="poster-div" (click)="moveToMovieOverview(movie.title, movie.poster, movie.genres)" [src]="movie.poster" alt="movie-image-here" height="400" width="300">
           <p style="font-weight: bold">{{ movie.title }}</p>
           <p-rating [(ngModel)]="movie.score"/>
           <p>{{ movie.genres }}</p>

@@ -32,11 +32,13 @@ export class FullComponent implements OnInit {
     this.currentUser = this.auth.currentUser()?.username;
     console.log(this.currentUser);
 
-    this.quantity = this.shoppingShared.shopping_cart_items().map((item: any) => item.quantity).reduce((a: any, b: any) => a + b, 0);
+    if (this.shoppingShared.shopping_cart_items().length > 0) {
+      this.quantity = this.shoppingShared.shopping_cart_items().map((item: any) => item.quantity).reduce((a: any, b: any) => a + b, this.quantity);
+    }
   }
 
-  navigateToLoginOrLogout(){
-    if(this.currentUser){
+  navigateToLoginOrLogout() {
+    if (this.currentUser) {
       this.auth.logout();
       window.location.reload();
       return;

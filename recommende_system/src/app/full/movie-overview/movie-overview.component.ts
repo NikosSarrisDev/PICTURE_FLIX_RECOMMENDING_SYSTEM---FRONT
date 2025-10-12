@@ -33,11 +33,7 @@ export class MovieOverviewComponent implements OnInit {
 
   addToShoppingCart() {
 
-    this.shoppingShared.title.set(this.title());
-    this.shoppingShared.thumbnail.set(this.thumbnail());
-    this.shoppingShared.type.set(this.type());
-    this.shoppingShared.price.set(this.price());
-    this.shoppingShared.quantity.set(this.quantity);
+    this.shoppingShared.addToCart(this.title(), this.type(), this.thumbnail(), this.quantity, this.price());
 
     this.messageService.add({ severity: 'success', summary: 'Επιτυχία', detail: 'Το αντικείμενο προσθέθηκε στο καλάθι αγορών' });
   }

@@ -5,6 +5,7 @@ import {DataService} from '../../data.service';
 import {Rating} from 'primeng/rating';
 import {FormsModule} from '@angular/forms';
 import {ProgressSpinner} from 'primeng/progressspinner';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -32,6 +33,7 @@ export class HomeComponent implements OnInit {
 
   auth = inject(AuthenticationService);
   data = inject(DataService);
+  router  = inject(Router);
 
   ngOnInit() {
     this.currentUser = this.auth.currentUser()?.username;
@@ -66,5 +68,9 @@ export class HomeComponent implements OnInit {
       this.music = musics;
       this.musicLoading = false;
     })
+  }
+
+  moveToMovieOverview(title: string, thumbnail: string, type: string) {
+    this.router.navigate(["/movieOverview"], { queryParams: { title: title, thumbnail: thumbnail, type: type, price: 10 }});
   }
 }

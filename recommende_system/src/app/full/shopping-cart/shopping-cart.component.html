@@ -17,17 +17,17 @@
         <th scope="col">Τίτλος</th>
         <th scope="col">Τύπος</th>
         <th scope="col">Ποσότητα</th>
-        <th scope="col">Τιμή</th>
+        <th scope="col">Τιμή του ενός</th>
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let item of shopping_cart_items">
+      <tr *ngFor="let item of shopping_cart_items; let i = index">
         <th scope="row"><img [src]="item.thumbnail" alt="movie-poster" height="150" width="100"></th>
         <td style="vertical-align: middle"><div >{{item.title}}</div></td>
         <td style="vertical-align: middle"><div>{{item.type}}</div></td>
         <td style="vertical-align: middle"><div>{{item.quantity}}</div></td>
         <td style="vertical-align: middle"><div>{{item.price}} <i class="pi pi-euro"></i></div></td>
-        <td></td>
+        <td class="delete-button" (click)="removeItemFromShoppingCart(i)"><i style="color: red" class="pi pi-times"></i></td>
       </tr>
       <tr>
         <td></td>

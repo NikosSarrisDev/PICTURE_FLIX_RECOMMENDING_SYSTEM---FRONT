@@ -24,14 +24,8 @@ import {ProgressSpinner} from 'primeng/progressspinner';
 })
 export class ShoppingCartComponent implements OnInit {
 
-  shopping_cart_items: {
-    title: string
-    type: string
-    thumbnail: string
-    quantity: number
-    price: number
-  }[] = [];
-  total_cost!: number;
+  shopping_cart_items: any[] = [];
+  total_cost: number = 0;
   currentUser!: string;
   orderSend: boolean = false;
 
@@ -44,12 +38,14 @@ export class ShoppingCartComponent implements OnInit {
   ngOnInit() {
     this.currentUser = this.auth.currentUser()?.username
     this.shopping_cart_items = this.shoppingCartShared.shopping_cart_items();
-    this.total_cost = this.shopping_cart_items.map((item: any) => item.price).reduce((a, b) => a + b, 0);
-    console.log(this.total_cost);
+
+    if (this.shopping_cart_items.length > 0) {
+      this.total_cost = this.shopping_cart_items.map((item: any) => item.quantity).reduce((a, b) => a + b, 0) * 10;
+    }
   }
 
   removeItemFromShoppingCart(index: number){
-
+    this.shoppingCartShared.removeOne(index);
   }
 
   storeOrder() {
