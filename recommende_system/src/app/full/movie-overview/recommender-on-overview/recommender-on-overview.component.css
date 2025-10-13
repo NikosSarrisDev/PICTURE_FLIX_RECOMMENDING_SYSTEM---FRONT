@@ -1,0 +1,8 @@
+.centered {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  background: #918d8d;
+  margin: 2rem ;
+}

@@ -40,12 +40,13 @@ export class ShoppingCartComponent implements OnInit {
     this.shopping_cart_items = this.shoppingCartShared.shopping_cart_items();
 
     if (this.shopping_cart_items.length > 0) {
-      this.total_cost = this.shopping_cart_items.map((item: any) => item.quantity).reduce((a, b) => a + b, 0) * 10;
+      this.findTotalCost();
     }
   }
 
   removeItemFromShoppingCart(index: number){
     this.shoppingCartShared.removeOne(index);
+    this.findTotalCost();
   }
 
   storeOrder() {
@@ -66,6 +67,10 @@ export class ShoppingCartComponent implements OnInit {
   removeAllFromCart() {
     this.shopping_cart_items = [];
     this.shoppingCartShared.removeEverythingFromShoppingCart();
+  }
+
+  findTotalCost() {
+    this.total_cost = this.shoppingCartShared.shopping_cart_items().map((item: any) => item.quantity).reduce((a : any, b : any) => a + b, 0) * 10;
   }
 
 }

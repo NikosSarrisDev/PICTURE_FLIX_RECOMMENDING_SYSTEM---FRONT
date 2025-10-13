@@ -1,0 +1,14 @@
+<div class="centered">
+  <div *ngIf="loading" style="display: flex; justify-content: center; align-items: center; padding-top: 4rem">
+    <p-progress-spinner ariaLabel="loading" strokeWidth="8" fill="transparent" [style]="{ width: '100px' }"/>
+  </div>
+  <div class="movie-grid" *ngIf="!loading">
+    <div class="movie-container" *ngFor="let movie of movies">
+      <img class="poster-div" (click)="moveToMovieOverview(movie.title, movie.poster, movie.genres)" [src]="movie.poster" alt="movie-image-here" height="400" width="300">
+      <p style="font-weight: bold">{{ movie.title }}</p>
+      <p-rating [(ngModel)]="movie.score"/>
+      <p>{{ movie.genres }}</p>
+    </div>
+  </div>
+</div>
+
