@@ -36,7 +36,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;}
   left: 1.5rem;
   font-size: 1.2rem;
   cursor: pointer;
-  color: black;
+  color: #2a3ec5;
   text-decoration: none;
 }
 
@@ -54,4 +54,13 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;}
 
 .poster-div:hover {
   transform: scale(1.05);
+}
+
+.movie-grid {
+  display: grid;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 2rem;
 }

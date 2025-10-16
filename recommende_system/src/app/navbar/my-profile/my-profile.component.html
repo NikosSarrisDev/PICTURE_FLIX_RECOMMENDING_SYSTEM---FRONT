@@ -1,3 +1,27 @@
-<div style="min-height: 100vh; background-image: linear-gradient(to bottom right, rgba(246,245,245,0.29), rgba(9,8,8,0.85));">
-  <p>My-profile works!</p>
+<div style="min-height: 100vh; background-image: linear-gradient(to bottom right, rgba(188,85,188,0.29), rgba(42,42,221,0.85));">
+  <div class="main-message">
+    <div *ngIf="!username">
+      Συνδέσου για να αποκτήσεις πρόσβαση στο ιστορικό παραγγελιών
+    </div>
+    <div *ngIf="username">
+      Ιστορικό παραγελιών του χρήστη {{username}}
+    </div>
+  </div>
+  <div *ngIf="loading && username" style="display: flex; justify-content: center; align-items: center; height: 100%">
+    <p-progress-spinner ariaLabel="loading" strokeWidth="8" fill="transparent" [style]="{ width: '100px' }"/>
+  </div>
+  <div *ngIf="username" class="orders-list">
+    <div class="order-item" *ngFor="let order of orders">
+      <div style="text-align: center">
+        <img [src]="order.thumbnail">
+      </div>
+      <div style="padding: 2rem; display: flex; flex-direction: column">
+        <div class="characteristics"><b>Τίτλος:</b> {{order.title}}</div>
+        <div class="characteristics"><b>Τύπος:</b> {{order.type}}</div>
+        <div class="characteristics"><b>Ποσότητα:</b> {{order.quantity}}</div>
+        <div class="characteristics"><b>Τιμή του ενός:</b> {{order.price}}<i class="pi pi-euro"></i></div>
+        <div class="characteristics"><b>Ημέρα και ώρα παραγγελίας: </b> {{mockDatetime.toString().slice(0,25)}}</div>
+      </div>
+    </div>
+  </div>
 </div>

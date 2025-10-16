@@ -1,0 +1,38 @@
+.main-message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem;
+}
+
+.main-message > div {
+  font-size: 3rem;
+  color: gold;
+  font-weight: bold;
+}
+
+.orders-list {
+  padding: 1.5rem;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+
+img {
+  width: 200px;
+  height: 300px;
+}
+
+.characteristics {
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+}
+
+.order-item {
+  display: flex;
+  align-items: center;
+  border: 2px solid gold;
+  border-radius: 0.5rem;
+  margin: 1rem;
+  padding: 1rem;
+}
