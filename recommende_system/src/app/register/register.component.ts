@@ -99,7 +99,7 @@ export class RegisterComponent implements OnInit{
     const password = this.creationForm.get('password')?.value;
     const phone = this.creationForm.get('phone')?.value;
 
-    this.dataService.createUser({name: name, email: email, password: password, phone: phone}).subscribe(r =>{
+    this.dataService.createUser({username: name, email: email, password: password, phone: phone}).subscribe(r =>{
       if(r.status == 'success'){
         this.messageService.add({severity: 'success', summary: 'Success!', detail: r.message});
         this.router.navigate(['/login']);

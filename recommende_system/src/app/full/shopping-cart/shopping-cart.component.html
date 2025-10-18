@@ -42,6 +42,6 @@
   <div class="buy-button-container">
     <p-toast />
     <div class="trash-button" (click)="removeAllFromCart()" *ngIf="shopping_cart_items.length != 0"><i class="pi pi-trash" style="font-size: 2rem; padding-right: 0.3rem"></i>Αφαίρεση όλων</div>
-    <div class="buy-button" (click)="storeOrder()" *ngIf="shopping_cart_items.length != 0"><i class="pi pi-shopping-cart" style="font-size: 2rem; padding-right: 0.3rem"></i>Ολοκλήρωση αγοράς</div>
+    <div class="buy-button" (click)="storeOrder()" *ngIf="shopping_cart_items.length != 0" [ngStyle]="orderSend ? { 'background' : '#ffd70077' } : { 'background' : '#ffd700' }"><i class="pi pi-shopping-cart" style="font-size: 2rem; padding-right: 0.3rem"></i>Ολοκλήρωση αγοράς</div>
   </div>
 </div>

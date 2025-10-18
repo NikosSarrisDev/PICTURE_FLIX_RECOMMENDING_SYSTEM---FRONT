@@ -4,8 +4,9 @@ import {DataService} from '../../../data.service';
 import {NgForOf, NgIf} from '@angular/common';
 import {Rating} from 'primeng/rating';
 import {FormsModule} from '@angular/forms';
-import {Router} from '@angular/router';
+import {NavigationEnd, Router} from '@angular/router';
 import {ProgressSpinner} from 'primeng/progressspinner';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-recommender-on-overview',
@@ -31,6 +32,11 @@ export class RecommenderOnOverviewComponent implements OnInit {
   router = inject(Router);
 
   ngOnInit() {
+    this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe(() => {
+        window.scrollTo({ top: 0 });
+      });
     this.getAllMovies();
   }
 
@@ -48,7 +54,7 @@ export class RecommenderOnOverviewComponent implements OnInit {
   getAllMovies() {
     this.loading = true;
 
-    this.data.getRecommendedMovieInOverview({type: this.type(), limit: 10}).subscribe((movies: any) => {
+    this.data.getRecommendedMovie({type: this.type(), limit: 10}).subscribe((movies: any) => {
       this.movies = movies;
       this.loading = false;
     });

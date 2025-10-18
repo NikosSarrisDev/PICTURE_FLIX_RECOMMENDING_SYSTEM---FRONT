@@ -1,7 +1,7 @@
-<div style="min-height: 100vh; background-image: linear-gradient(to bottom right, rgba(188,85,188,0.29), rgba(42,42,221,0.85));">
+<div style="min-height: 100vh; background-image: linear-gradient(to bottom , rgba(188,85,188), rgba(42,42,221));">
   <div class="main-message">
-    <div *ngIf="!username">
-      Συνδέσου για να αποκτήσεις πρόσβαση στο ιστορικό παραγγελιών
+    <div *ngIf="!username" style="font-size: 2rem; display: flex; flex-direction: column; text-align: center">
+      <a routerLink="/login">Συνδέσου εδώ</a> για να αποκτήσεις πρόσβαση στο ιστορικό παραγγελιών
     </div>
     <div *ngIf="username">
       Ιστορικό παραγελιών του χρήστη {{username}}
@@ -20,7 +20,7 @@
         <div class="characteristics"><b>Τύπος:</b> {{order.type}}</div>
         <div class="characteristics"><b>Ποσότητα:</b> {{order.quantity}}</div>
         <div class="characteristics"><b>Τιμή του ενός:</b> {{order.price}}<i class="pi pi-euro"></i></div>
-        <div class="characteristics"><b>Ημέρα και ώρα παραγγελίας: </b> {{mockDatetime.toString().slice(0,25)}}</div>
+        <div class="characteristics"><b>Ημέρα και ώρα παραγγελίας: </b> {{order.created_at | date: 'yyyy-MM-dd HH:mm:ss'}}</div>
       </div>
     </div>
   </div>

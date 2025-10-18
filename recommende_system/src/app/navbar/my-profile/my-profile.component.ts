@@ -3,6 +3,8 @@ import {AuthenticationService} from '../../auth.service';
 import {DataService} from '../../data.service';
 import {DatePipe, NgForOf, NgIf} from '@angular/common';
 import {ProgressSpinner} from 'primeng/progressspinner';
+import {ButtonDirective} from 'primeng/button';
+import {RouterLink} from '@angular/router';
 
 @Component({
   selector: 'app-my-profile',
@@ -11,7 +13,9 @@ import {ProgressSpinner} from 'primeng/progressspinner';
     NgIf,
     NgForOf,
     ProgressSpinner,
-    DatePipe
+    DatePipe,
+    ButtonDirective,
+    RouterLink
   ],
   templateUrl: './my-profile.component.html',
   styleUrl: './my-profile.component.css'
@@ -22,15 +26,14 @@ export class MyProfileComponent implements OnInit {
   orders: any[] = [];
   loading!: boolean;
   orderItemsArray : any[] = [];
-  mockDatetime: Date = new Date("2025-10-11T20:26:45.789Z");
 
   auth = inject(AuthenticationService);
   data = inject(DataService);
 
   ngOnInit() {
 
-    // this.username = this.auth.currentUser()?.username;
-    this.username = "guest";
+    this.username = this.auth.currentUser()?.username;
+    // this.username = "guest";
     if(this.username){
       this.getAllOrders({username: this.username});
     }
@@ -56,4 +59,5 @@ export class MyProfileComponent implements OnInit {
     })
   }
 
+  protected readonly Date = Date;
 }

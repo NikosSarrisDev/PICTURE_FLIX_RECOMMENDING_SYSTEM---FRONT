@@ -5,7 +5,7 @@
       Καλώς όρισες {{ currentUser }}
     </p>
     <p *ngIf="!currentUser" class="welcome-text">
-      Συνδέσου για μια μοναδική εμπειρία προτιμήσεων
+      <a routerLink="/login">Συνδέσου</a> για μια μοναδική εμπειρία προτιμήσεων
     </p>
   </div>
   <div *ngIf="moviesLoading || booksLoading || musicLoading" style="display: flex; justify-content: center; align-items: center; padding-top: 4rem">

@@ -5,7 +5,7 @@ import {DataService} from '../../data.service';
 import {Rating} from 'primeng/rating';
 import {FormsModule} from '@angular/forms';
 import {ProgressSpinner} from 'primeng/progressspinner';
-import {Router} from '@angular/router';
+import {Router, RouterLink} from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -15,7 +15,8 @@ import {Router} from '@angular/router';
     NgForOf,
     Rating,
     FormsModule,
-    ProgressSpinner
+    ProgressSpinner,
+    RouterLink
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
