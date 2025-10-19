@@ -24,4 +24,9 @@
       </div>
     </div>
   </div>
+  <div *ngIf="username && orders.length == 0 && !loading" class="orders-template">
+    <div style="font-size: 1.5rem; color: gold; font-weight: bold">
+      Δεν υπάρχουν παραγγελίες
+    </div>
+  </div>
 </div>

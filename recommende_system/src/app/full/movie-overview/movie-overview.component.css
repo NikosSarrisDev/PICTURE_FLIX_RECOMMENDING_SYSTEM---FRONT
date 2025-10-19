@@ -63,3 +63,23 @@ button {
   color: #FFFFFF;
   background: linear-gradient(#b042e4, #701180);
 }
+
+.continue-button {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(#b042e4, #701180);
+  font-size: 1.2rem;
+  gap: 1rem;
+  padding: 1.1rem;
+  bottom: 3rem;
+  right: 3rem;
+  border-radius: 2rem;
+  animation: goUp 1s ease-out forwards;
+  cursor: pointer;
+}
+
+@keyframes goUp {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-100%); }
+}

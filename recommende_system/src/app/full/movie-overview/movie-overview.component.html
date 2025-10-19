@@ -24,7 +24,7 @@
         <b>Ποσότητα: {{quantity}}</b>
       </div>
       <div class="buy-button-container">
-        <p-toast />
+        <p-toast position="top-center" />
         <div class="buy-button" (click)="addToShoppingCart()"><i class="pi pi-shopping-cart" style="font-size: 2rem; padding-right: 0.3rem"></i>Προσθήκη στο καλάθι</div>
       </div>
     </div>
@@ -34,5 +34,9 @@
     <div style="font-size: 1.5rem; padding: 4rem 0 2rem 4rem">Μπορεί να σας αρέσουν επίσης</div>
     <app-recommender-on-overview [type]="type()"></app-recommender-on-overview>
     <div id="checkpoint"></div>
+  </div>
+  <div class="continue-button" *ngIf="addToCartButtonPressed" (click)="moveToShoppingCart()">
+    <div style="text-align: center; font-size: inherit; color: white">Συνέχεια στο καλάθι</div>
+    <div style="border-radius: 2rem; text-align: center; background: inherit; color: white; font-size: inherit; padding: 1rem"><i class="pi pi-arrow-right"></i></div>
   </div>
 </div>

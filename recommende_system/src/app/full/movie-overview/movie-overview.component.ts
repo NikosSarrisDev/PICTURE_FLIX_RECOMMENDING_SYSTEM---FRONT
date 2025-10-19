@@ -5,6 +5,7 @@ import {Toast, ToastModule} from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import {AuthenticationService} from '../../auth.service';
 import {RecommenderOnOverviewComponent} from './recommender-on-overview/recommender-on-overview.component';
+import {NgIf} from '@angular/common';
 
 @Component({
   selector: 'app-movie-overview',
@@ -12,7 +13,8 @@ import {RecommenderOnOverviewComponent} from './recommender-on-overview/recommen
   imports: [
     RouterLink,
     Toast,
-    RecommenderOnOverviewComponent
+    RecommenderOnOverviewComponent,
+    NgIf
   ],
   templateUrl: './movie-overview.component.html',
   styleUrl: './movie-overview.component.css',
@@ -26,6 +28,7 @@ export class MovieOverviewComponent implements OnInit {
   price = input(0);
   quantity = 1;
   username!: string;
+  addToCartButtonPressed = false;
 
   router = inject(Router);
   shoppingShared = inject(ShoppingCartSharingService);
@@ -37,6 +40,9 @@ export class MovieOverviewComponent implements OnInit {
   }
 
   addToShoppingCart() {
+    setTimeout(() => {
+      this.addToCartButtonPressed = true;
+    }, 1000);
     this.shoppingShared.addToCart(this.title(), this.type(), this.thumbnail(), this.quantity, this.price());
     this.messageService.add({ severity: 'success', summary: 'Επιτυχία', detail: 'Το αντικείμενο προσθέθηκε στο καλάθι αγορών' });
 
@@ -47,6 +53,10 @@ export class MovieOverviewComponent implements OnInit {
       el.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
+  }
+
+  moveToShoppingCart() {
+    this.router.navigate(['/shoppingCart']);
   }
 
   addQuantity() {
