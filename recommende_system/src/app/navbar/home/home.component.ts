@@ -39,33 +39,33 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.currentUser = this.auth.currentUser()?.username;
 
-    this.getAllMovies();
-    this.getAllBooks();
-    this.getAllMusic();
+    this.getAllMovies({username: this.currentUser ? this.currentUser : "Guest"});
+    this.getAllBooks({username: this.currentUser ? this.currentUser : "Guest"});
+    this.getAllMusic({username: this.currentUser ? this.currentUser : "Guest"});
   }
 
-  getAllMovies() {
+  getAllMovies(data: any) {
     this.moviesLoading = true;
 
-    this.data.getRecommendedMovie({type : "War", limit: 10}).subscribe((movies: any) => {
+    this.data.getRecommendedMovie(data).subscribe((movies: any) => {
       this.movies = movies;
       this.moviesLoading = false;
     });
   }
 
-  getAllBooks() {
+  getAllBooks(data: any) {
     this.booksLoading = true;
 
-    this.data.getRecommendedBook({type : "War", limit: 10}).subscribe((books: any) => {
+    this.data.getRecommendedBook(data).subscribe((books: any) => {
       this.books = books;
       this.booksLoading = false;
     })
   }
 
-  getAllMusic(){
+  getAllMusic(data: any){
     this.musicLoading = true;
 
-    this.data.getRecommendedMusic({type : "War", limit: 10}).subscribe((musics: any) => {
+    this.data.getRecommendedMusic(data).subscribe((musics: any) => {
       this.music = musics;
       this.musicLoading = false;
     })
