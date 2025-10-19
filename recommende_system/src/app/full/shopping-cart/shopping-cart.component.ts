@@ -53,10 +53,8 @@ export class ShoppingCartComponent implements OnInit {
   storeOrder() {
     this.orderSend = true;
     this.dataService.storeOrder({ username: this.currentUser ?? "guest", orderDetails: this.shopping_cart_items }).subscribe(response => {
-      console.log(response);
-      if (response && response.status === "error") {
-        this.messageService.add({ severity: response.status, summary: 'Επιτυχία', detail: 'Η αγορά ολοκληρώθηκε!' });
-      }
+
+      this.messageService.add({ severity: response.status, summary: 'Επιτυχία', detail: 'Η αγορά ολοκληρώθηκε!' });
 
       //Μετά από επιτυμένη αγορά αδιάζουμε το καλάθι
       this.removeAllFromCart();

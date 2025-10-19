@@ -37,6 +37,7 @@ img {
 .characteristics {
   padding: 1.5rem;
   border-radius: 0.5rem;
+  color: white;
 }
 
 .order-item {
